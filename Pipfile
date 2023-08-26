@@ -11,6 +11,7 @@ sqlalchemy = "*"
 aiomysql = "*"
 greenlet = "*"
 mysqlclient = "~=2.1.0"
+redis = "*"
 
 [dev-packages]
 
