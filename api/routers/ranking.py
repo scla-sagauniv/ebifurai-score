@@ -3,7 +3,7 @@ from fastapi import APIRouter, HTTPException, Depends
 from api.db import get_db
 import api.schemas.ranking_row as r_schema
 from api.schemas.ranking_res import RankingRes
-import api.schemas.score as s_schema
+import api.schemas.score_res as s_schema
 import api.cruds.ranking as r_crud
 import api.cruds.score as s_crud
 from sqlalchemy.ext.asyncio import AsyncSession

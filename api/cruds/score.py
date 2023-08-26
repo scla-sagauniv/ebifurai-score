@@ -1,15 +1,18 @@
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.orm import Session
 
-import api.models.score as s_model
-import api.schemas.score as s_schema
+from api.models.user import User
+from api.models.score import Score
 
 from typing import List, Tuple, Optional
 
-async def update_score(
-    db: AsyncSession, score_create: s_schema.ScoreRow, original: s_model.Score
-) -> s_model.Score:
-    original.score = score_create.score
-    db.add(original)
-    await db.commit()
-    await db.refresh(original)
-    return original
+
+def updateScore(score: Score, db: Session):
+    user_name = db.query(Score).where(Score.user_id == score.user_id).first()
+    user_name.score = score.score
+    db.commit()
+
+
+def readScoreByUserId(db: Session, user_id: str) -> Score:
+    score = db.query(Score).where(Score.user_id == user_id).first()
+    return score
